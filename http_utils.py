@@ -120,6 +120,7 @@ class HttpSession(requests.Session):
             # to temporarily override the reponse.url attribute
             orig_url = response.url
             response.url = name
+
         try:
             response.raise_for_status()
         except RequestException as e:
@@ -137,6 +138,7 @@ class HttpSession(requests.Session):
                 response_time=request_meta["response_time"],
                 response_length=request_meta["content_size"],
             )
+
         if name:
             response.url = orig_url
         return response

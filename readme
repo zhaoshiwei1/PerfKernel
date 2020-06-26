@@ -2,3 +2,12 @@ Trying to develop out a simple performance test kernel with:
 1, RPS mode.
 2, Web-customized function to limit rate.
 3, Basic and in-timely statistics presenting via web.
+
+2020-06-26
+1, Merging statistic model from locust project.
+2, Complete http utils; once request succeed or failed, added to relevant statistic entry via events listener automatically.
+
+todo:
+1, Web input to get perf rate.
+2, Web presentation for statistic result.
+3, Token bucket function to control perf rate(getting from web).
