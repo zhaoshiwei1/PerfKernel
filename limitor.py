@@ -20,24 +20,3 @@ class TokenBucket(object):
         self._last_consume_time = int(time.time())
         self._current_amount -= token_amount
         return True
-
-
-class TokenBucketWrapper(object):
-
-    def __init__(self, rate):
-        self._rate = rate
-        self._capacity = 10 ** len(str(self._rate))
-        self._current_amount = 0
-        self._last_consume_time = int(time.time())
-
-    def __call__(self, func):
-        def wrapper(*args, **kwargs):
-            increment = (int(time.time()) - self._last_consume_time) * self._rate
-            self._current_amount = min(increment + self._current_amount, self._capacity)
-            if self._current_amount == 0:
-                pass
-            else:
-                self._last_consume_time = int(time.time())
-                self._current_amount -= self.token_amount
-                return func(*args, **kwargs)
-        return wrapper
