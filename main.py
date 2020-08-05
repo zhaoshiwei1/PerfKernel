@@ -18,11 +18,11 @@ def worker():
 
     def stats_printer():
         while True:
-            print("-" * 80)
-            # print_stats(statistics)
+            # print("-" * 80)
+            print_stats(statistics)
             gevent.sleep(3)
 
-    g_list = [gevent.spawn(runner) for i in range(0, 20)]
+    g_list = [gevent.spawn(runner) for i in range(0, 10)]
     g_list.append(gevent.spawn(stats_printer))
 
     gevent.joinall(g_list)

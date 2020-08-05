@@ -622,16 +622,20 @@ def on_request_failure(request_type, name, response_time, response_length, excep
     global_stats.log_error(request_type, name, exception)
 
 
+def print_stats(stats, current=True):
+    print(stats.total.current_rps)
+    # console_logger.info((" %-" + str(STATS_NAME_WIDTH) + "s %7s %12s %7s %7s %7s  | %7s %7s %7s") % ('Name', '# reqs', '# fails', 'Avg', 'Min', 'Max', 'Median', 'req/s', 'failures/s'))
+    # console_logger.info("-" * (80 + STATS_NAME_WIDTH))
+    # for key in sorted(stats.entries.keys()):
+    #     r = stats.entries[key]
+    #     console_logger.info(r.to_string(current=current))
+    # console_logger.info("-" * (80 + STATS_NAME_WIDTH))
+    # console_logger.info(stats.total.to_string(current=current))
+    # console_logger.info("")
+
+
 events.request_success += on_request_success
 events.request_failure += on_request_failure
 
 
-def print_stats(stats, current=True):
-    console_logger.info((" %-" + str(STATS_NAME_WIDTH) + "s %7s %12s %7s %7s %7s  | %7s %7s %7s") % ('Name', '# reqs', '# fails', 'Avg', 'Min', 'Max', 'Median', 'req/s', 'failures/s'))
-    console_logger.info("-" * (80 + STATS_NAME_WIDTH))
-    for key in sorted(stats.entries.keys()):
-        r = stats.entries[key]
-        console_logger.info(r.to_string(current=current))
-    console_logger.info("-" * (80 + STATS_NAME_WIDTH))
-    console_logger.info(stats.total.to_string(current=current))
-    console_logger.info("")
+
