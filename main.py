@@ -5,10 +5,10 @@ import random
 from stats import global_stats, print_stats
 
 statistics = global_stats
-main_greenlet = []
 
 
 def worker():
+
     def runner():
         client = HttpSession("http://127.0.0.1:8080")
         url_template = "/calculate?a={}&b={}"
@@ -18,7 +18,6 @@ def worker():
 
     def stats_printer():
         while True:
-            # print("-" * 80)
             print_stats(statistics)
             gevent.sleep(3)
 

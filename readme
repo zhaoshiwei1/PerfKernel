@@ -1,7 +1,6 @@
 Trying to develop out a simple performance test kernel with:
-1, RPS mode.
-2, Web-customized function to limit rate.
-3, Basic and in-timely statistics presenting via web.
+1, RPS mode, customized from web.
+2, Basic and in-timely statistics presenting via web.
 
 2020-06-26
 1, Merging statistic model from locust project.
@@ -9,10 +8,16 @@ Trying to develop out a simple performance test kernel with:
 
 2020-06-29
 1, Complete token bucket, now attacking in rate.
-****************************************************
-*2, Adding gevent in loop needs more investigation.*
-****************************************************
+2, Adding gevent in loop needs more investigation.
 
-target:
-1, Web input to get perf rate.
-2, Web presentation for statistic result.
+2020-08-05
+1, Token bucket demo is done, now attacking can be in rps rate.
+2, Attacking now is under non-blocked mode, with determined concurrency rate.
+3, Statistics from locust now is working, with Hook function.(See RequestEntry and RequestStats)
+
+2020-08-06
+1, Coroutine is running with in epoll event loop, once running, current application will be blocked.
+2, Using coroutine to manage each attack
+3, Using Thread to fill each CPU core
+4, Using multiprocessing to fill processors.
+5, Using the resource pool as a cloud-service.
