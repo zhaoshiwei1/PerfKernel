@@ -1,19 +1,21 @@
 import asyncio
 from threading import Thread
+import aiohttp
 
 
-async def work(i):
+async def fetch(url):
     while True:
-        print("I'm task: {}".format(i))
-        await asyncio.sleep(1)
+        async with aiohttp.request('GET', url) as resp:
+            json = await resp.text()
+            print(json)
 
 
 async def lead(loop):
     i = 0
     while True:
-        asyncio.run_coroutine_threadsafe(work(i), loop)
-        await asyncio.sleep(1)
+        asyncio.run_coroutine_threadsafe(fetch('http://127.0.0.1:8080/calculate?a=1&b={}'.format(i)), loop)
         i += 1
+        await asyncio.sleep(1)
 
 
 async def welcome():

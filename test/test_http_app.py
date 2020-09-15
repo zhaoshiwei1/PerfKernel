@@ -9,12 +9,9 @@ urls = (
 
 class Foo:
     def GET(self):
-        print(web.input().keys())
+        # print(web.input().keys())
         a = int(web.input().a)
         b = int(web.input().b)
-        seed = random.randint(5, 10)
-        time.sleep(5)
-        print(seed)
         result = {"result": a+b}
         return json.dumps(result)
 
